@@ -27,6 +27,16 @@
 - 出参：套餐内组成、可特调项（`supportModify`）。
 - 用途：用户想了解套餐里有什么、能否更换搭配。
 
+## available-coupons — 麦麦省可领优惠券（放码 / 领券）
+- 入参：无。
+- 出参：当前可领取的优惠券列表（券名称、图片、状态、促销标签）。
+- 用途：「非购买」类领券 / 放码活动的数据源。只做展示；用户明确要领券时才调 `auto-bind-coupons`（一键领取，需先确认）。
+- 相关：`query-store-coupons`（指定门店可用券，下单场景）、`query-my-coupons`（我的卡包券）。
+
+## 官方征集 / 比赛活动（MCP 外渠道）
+- 数据源：本 skill `references/external-events.md`（人工维护清单）。
+- 用途：麦当劳开发者征集、比赛类活动**不在 MCP 内**。输出「比赛 / 征集」分类时，必须把清单中仍在有效期内的条目合并进结果，并给出清单中的跳转链接。
+
 ## calculate-price — 价格计算
 - 入参：`storeCode`、`orderType`、`beType`、`items[{productCode, quantity}]`。
 - 出参：`price`（现价，分）、`originalPrice`、`discount`、`productList[]`、`takeWayList[]`。

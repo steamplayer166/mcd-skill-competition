@@ -21,6 +21,7 @@
 | `query-nearby-stores` | 查询到店门店，获取 `storeCode` | `beType`、`searchType`、`city`、`keyword` |
 | `query-meals` | 查询菜单与餐品价格 | `storeCode`、`orderType`、`beType` |
 | `query-meal-detail` | 查询套餐组成与可特调项 | `storeCode`、`orderType`、`beType`、`code` |
+| `available-coupons` | 查询麦麦省可领取优惠券（放码 / 领券类活动来源） | 无 |
 | `calculate-price` | 计算商品总价（含优惠） | `storeCode`、`orderType`、`beType`、`items[]` |
 | `create-order` | 创建订单 | `storeCode`、`orderType`、`beType`、`items[]`、`takeWay` |
 
@@ -32,9 +33,11 @@
         ▼
  campaign-calendar（可选 now-time-info 确认日期）
         │
-        ├─ 用户提「抽奖/领券」→ query-lottery-info
+        ├─ 非购买补全 → query-lottery-info（抽奖）+ available-coupons（放码/领券）
+        │              + references/external-events.md（官方征集比赛，MCP 外）
         │
-        ├─ 用户想了解套餐价格 → query-nearby-stores → query-meals / query-meal-detail
+        ├─ 可购买补全 → query-nearby-stores → query-meals（价格）
+        │              → query-meal-detail（套餐所含食物）
         │
         ├─ 用户想下单 → calculate-price → create-order
         │
