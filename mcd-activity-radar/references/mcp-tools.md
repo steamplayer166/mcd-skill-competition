@@ -1,6 +1,6 @@
 # 麦当劳 MCP 工具速查（本 skill 使用）
 
-> 工具前缀均为 `mcp__mcd-mcp__`。价格单位：`calculate-price` / `query-meals` 的「分」需 ÷100 转「元」；`campaign-calendar` 文案中的价格已是「元」。
+> 工具前缀均为 `mcp__mcd-mcp__`。价格单位：`calculate-price` 返回「分」需 ÷100 转「元」；`query-meals` 的 `currentPrice` / `originalPrice` 与 `campaign-calendar` 文案价格均为「元」，直接引用。
 
 ## campaign-calendar — 活动日历（主数据源）
 - 入参：`specifiedDate`（可选，`yyyy-MM-dd`）。不传则返回当月所有活动；传了则以该日为锚点，返回当天及前后各一个最近活动日。
@@ -19,7 +19,7 @@
 
 ## query-meals — 菜单与价格
 - 入参：`storeCode`、`orderType`（1 到店 / 2 外送）、`beType`、`beCode`（得来速/外送必传）。
-- 出参：`categories[]`（分类）与 `meals{code}` 映射，每项含 `name`、`currentPrice`（现价，分）、`originalPrice`（原价，分）、`discountType`（优惠类型）、`tags`（如「上新」「限时特惠」）、`canWithOrder`。
+- 出参：`categories[]`（分类）与 `meals{code}` 映射，每项含 `name`、`currentPrice`（现价，元）、`originalPrice`（原价，元）、`discountType`（优惠类型）、`tags`（如「上新」「限时特惠」）、`canWithOrder`。
 - 用途：查某套餐 / 新品具体价格，配合「套餐优惠」类活动。
 
 ## query-meal-detail — 套餐组成

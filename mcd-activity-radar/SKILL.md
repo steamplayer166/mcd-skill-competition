@@ -45,7 +45,7 @@ agent_created: true
 ```
 ### 一、套餐优惠（可购买）
 - 活动名称：{活动标题}
-  - 价格：{现价（及原价）；来源为 query-meals / calculate-price 时单位为分需 ÷100，日历文案价格已是元；周边加价购写「消费 X 元加价得」}
+  - 价格：{现价（及原价）；来源为 calculate-price 时单位为分需 ÷100，query-meals 的 currentPrice 与日历文案价格均为元，直接引用；周边加价购写「消费 X 元加价得」}
   - 套餐内容：{套餐所含食物，来自 query-meal-detail 或日历文案；周边类写物品本身；无则写「单品」}
   - 参与要求：{从活动内容介绍提炼，如「任意餐品消费加 39.9 元」「学生身份」；无则写「无门槛」}
   - 活动入口：{渠道，如「麦当劳 APP / 小程序 / 到店」；文案含链接时给链接}
@@ -61,7 +61,7 @@ agent_created: true
 - 非购买类必须跑完第 3 步的三路合并，漏掉 `available-coupons`（放码）或 `external-events.md`（征集比赛）都算输出不完整
 - 可购买类必须跑第 4 步，输出缺「价格」或缺「套餐内容」都算不完整
 - 图片字段是 `<img src=...>`，仅在需要时展示图片 URL，不作为跳转入口
-- `campaign-calendar` 文案中的价格已是「元」，直接引用；`calculate-price` / `query-meals` 的价格单位是「分」，需 ÷100 转「元」
+- `campaign-calendar` 文案与 `query-meals` 的 `currentPrice` / `originalPrice` 均为「元」，直接引用；仅 `calculate-price` 的价格单位是「分」，需 ÷100 转「元」
 - 只列真实存在、进行中或已预告的活动；已结束的活动标注「已结束」
 - 若返回为空或异常，如实说明，不编造活动
 - 用户明确想下单时，再进入门店选择 + `calculate-price` + `create-order` 流程，不主动下单
